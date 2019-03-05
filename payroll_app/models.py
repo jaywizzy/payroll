@@ -38,7 +38,7 @@ class Month(models.Model):
 
 class SalaryPayroll(models.Model):
     salary = models.ForeignKey(Salary, on_delete=models.CASCADE, related_name='salary_payrolls')
-    # loan = models.ForeignKey(Loan)
+    month = models.ForeignKey(Month, on_delete=models.CASCADE, related_name='salary_payrolls')
     date_created = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.BooleanField(null=True)

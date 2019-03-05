@@ -4,7 +4,8 @@
 
 {% block content %}
     {% for year in years %}
-    <button class="btn btn-lg btn-primary"> {{ year }} </button>
-{% endfor %}
-
+    <a class="btn btn-lg btn-primary" href="{% url 'year_month' year.id %}"> {{ year }} </a>
+    {{ year.id }}
+    {% endfor %}
+        <p></p>
 {% endblock %}

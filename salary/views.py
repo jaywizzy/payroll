@@ -8,8 +8,8 @@ from django.db.models import Count
 
 def salary(request):
 
-    # salary = Salary.objects.all()
-    salary = Salary.objects.annotate(month=ExtractMonth('date_created')).values('month').annotate(count=Count('id')).values('month', 'count')
+    salary = Salary.objects.all()
+    # salary = Salary.objects.annotate(month=ExtractMonth('date_created')).values('month').annotate(count=Count('id')).values('month', 'count')
     return render(request, 'salary/index.html', {'salary': salary})
 
 def create_salary(request):

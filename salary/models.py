@@ -27,9 +27,9 @@ class Salary(models.Model):
 
     def save(self, *args, **kwargs):
         # print(self.payroll)
-        self.tax_deduction = self.amount / 3
+        self.tax_deduction = self.net_pay / 3
         print(self.tax_deduction)
-        self.allowances = self.travel_allowance + self.amount + self.leave_allowance + self.performance_allowance + self.transport_allowance + self.medical_allowance -self.tax_deduction - self.other_deductions
+        self.allowances = self.travel_allowance + self.net_pay + self.leave_allowance + self.performance_allowance + self.transport_allowance + self.medical_allowance -self.tax_deduction - self.other_deductions
         # self.payroll = self.tax_deduction - self.other_deductions
         # self.total = self.allowances - self.payroll
         self.gross_pay = self.allowances

@@ -25,7 +25,7 @@ def index(request):
     # for y in year:
     #     years.append(y.year)
     # years.sort()
-    years = Year.objects.all()
+    years = Year.objects.all().order_by('year')
     return render(request, 'payroll/index.html', {'years': years})
 
 #this function gets the year id from the index.html view <a> tag and displays the months under it
@@ -33,6 +33,9 @@ def year_month(request, year):
     # month = get_object_or_404(Month, year=year)
     months = Month.objects.filter(year=year)
     return render(request, 'payroll/year_month.html', {'months': months})
+
+# def payroll_salary(request, month):
+
 
 
 def login(request):

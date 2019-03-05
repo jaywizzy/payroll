@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+<h3>Salary Payroll</h3>
+
+
+{% block content %}
+    {% for s_p in salary_payroll %}
+    <a class="btn btn-lg btn-primary"> {{ s_p }} </a>
+    <!--{{ year.id }}-->
+    {% endfor %}
+        <p></p>
+{% endblock %}

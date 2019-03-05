@@ -1,0 +1,342 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+<title>:Payroll | Home</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="description" content="Lucid Bootstrap 4.1.1 Admin Template">
+<meta name="author" content="WrapTheme, design by: ThemeMakker.com">
+
+<!--<link rel="icon" href="favicon.ico" type="image/x-icon">-->
+<!-- VENDOR CSS -->
+<link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/font-awesome/css/font-awesome.min.css' %}">
+<!--<link rel="stylesheet" href="{% static 'assets/toastr/toastr.min.css' %}">-->
+
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/color_skins.css' %}">
+<link rel="stylesheet" href="{% static 'assets/select2/select2.css' %}" />
+
+</head>
+<body class="theme-orange">
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><img src="../assets/images/logo-icon.svg" width="48" height="48" alt="Lucid"></div>
+        <p>Please wait...</p>        
+    </div>
+</div>
+<!-- Overlay For Sidebars -->
+
+<div id="wrapper">
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-btn">
+                <button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu fa fa-bars"></i></button>
+            </div>
+
+            <div class="navbar-brand">
+                <a href="index.html"><img src="{% static 'assets/images/logo.png' %}" alt="Lucid Logo" class="img-responsive logo"></a>
+            </div>
+            
+            <div class="navbar-right">
+                <form id="navbar-search" class="navbar-form search-form">
+                    <input value="" class="form-control" placeholder="Search here..." type="text">
+                    <button type="button" class="btn btn-default"><i class="icon-magnifier"></i></button>
+                </form>               
+
+                <div id="navbar-menu">
+                    <ul class="nav navbar-nav">                        
+                        <!--<li><a href="app-events.html" class="icon-menu d-none d-sm-block d-md-none d-lg-block"><i class="icon-calendar"></i></a></li>-->
+                        <!--<li><a href="app-chat.html" class="icon-menu d-none d-sm-block"><i class="icon-bubbles"></i></a></li>-->
+                        <!--<li><a href="app-inbox.html" class="icon-menu d-none d-sm-block"><i class="icon-envelope"></i><span class="notification-dot"></span></a></li>-->
+                        <!--<li class="dropdown">-->
+                            <!--<a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">-->
+                                <!--<i class="icon-bell"></i>-->
+                                <!--<span class="notification-dot"></span>-->
+                            <!--</a>-->
+                            <!--<ul class="dropdown-menu notifications animated shake">-->
+                                <!--<li class="header"><strong>You have new Notifications</strong></li>-->
+                                <!--<li>-->
+                                    <!--<a href="javascript:void(0);">-->
+                                        <!--<div class="media">-->
+                                            <!--<div class="media-left">-->
+                                                <!--<i class="icon-info text-warning"></i>-->
+                                            <!--</div>-->
+                                            <!--<div class="media-body">-->
+                                                <!--<p class="text">Campaign <strong>Holiday Sale</strong> is nearly reach budget limit.</p>-->
+                                                <!--<span class="timestamp">10:00 AM Today</span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</a>-->
+                                <!--</li>-->
+
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown"><i class="icon-equalizer"></i></a>
+                            <ul class="dropdown-menu user-menu menu-icon animated bounceIn">
+                                <!--<li class="menu-heading">ACCOUNT SETTINGS</li>-->
+                                <!--<li><a href="javascript:void(0);"><i class="icon-note"></i> <span>Basic</span></a></li>-->
+                                <!--<li><a href="javascript:void(0);"><i class="icon-equalizer"></i> <span>Preferences</span></a></li>-->
+
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'login' %}" class="icon-menu"><i class="icon-login"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="left-sidebar" class="sidebar">
+        <div class="sidebar-scroll">
+            <div class="user-account">
+                <img src="../assets/images/user.png" class="rounded-circle user-photo" alt="User Profile Picture">
+                <div class="dropdown">
+                    <span>Welcome,</span>
+                    <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong>Jessica Doe</strong></a>                    
+                    <ul class="dropdown-menu dropdown-menu-right account animated flipInY">
+                        <li><a href="page-profile2.html"><i class="icon-user"></i>My Profile</a></li>
+                        <li><a href="app-inbox.html"><i class="icon-envelope-open"></i>Messages</a></li>
+                        <li><a href="javascript:void(0);"><i class="icon-settings"></i>Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="page-login.html"><i class="icon-power"></i>Logout</a></li>
+                    </ul>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">
+                        <h6>5+</h6>
+                        <small>Experience</small>                        
+                    </div>
+                    <div class="col-4">
+                        <h6>400+</h6>
+                        <small>Employees</small>                        
+                    </div>
+                    <div class="col-4">                        
+                        <h6>80+</h6>
+                        <small>Clients</small>
+                    </div>
+                </div>
+            </div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#hr_menu">HR</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#project_menu">Project</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#sub_menu"><i class="icon-grid"></i></a></li>                
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#setting"><i class="icon-settings"></i></a></li>
+            </ul>
+                
+            <!-- Tab panes -->
+            <div class="tab-content p-l-0 p-r-0">
+                <div class="tab-pane animated fadeIn active" id="hr_menu">
+                    <nav class="sidebar-nav">
+                        <ul class="main-menu metismenu">
+                            <li class="active"><a href="index.html"><i class="icon-speedometer"></i><span>HR Dashboard</span></a></li>
+                            <li>
+                                <a href="#" class="has-arrow"><i class="icon-briefcase"></i><span>Loan</span></a>
+                                <ul>
+                                    <li><a href="{% url 'apply_loan' %}">Apply</a></li>
+                                    <li><a href="{% url 'loan' %}">View Loan History</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="has-arrow"><i class="icon-briefcase"></i><span>Salary</span></a>
+                                <ul>
+                                    <li><a href="{% url 'add_salary' %}">Add Salary</a></li>
+                                    <li><a href="{% url 'salary' %}">View Salary History</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="tab-pane animated fadeIn" id="project_menu">
+                    <nav class="sidebar-nav">
+                        <ul class="main-menu metismenu">
+                            <li><a href="index2.html"><i class="icon-speedometer"></i><span>Dashboard</span></a></li>
+                            <li><a href="app-inbox.html"><i class="icon-envelope"></i>Inbox App</a></li>
+                            <li><a href="app-chat.html"><i class="icon-bubbles"></i>Chat App</a></li>
+                            <li>
+                                <a href="#Projects" class="has-arrow"><i class="icon-list"></i><span>Projects</span></a>
+                                <ul>
+                                    <li><a href="project-add.html">Add Projects</a></li>
+                                    <li><a href="project-list.html">Projects List</a></li>
+                                    <li><a href="project-detail.html">Projects Detail</a></li>                                    
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#Clients" class="has-arrow"><i class="icon-user"></i><span>Clients</span></a>
+                                <ul>
+                                    <li><a href="client-add.html">Add Clients</a></li>
+                                    <li><a href="client-list.html">Clients List</a></li>
+                                    <li><a href="client-detail.html">Clients Detail</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="app-taskboard.html"><i class="icon-tag"></i>Taskboard</a></li>
+                            <li><a href="app-tickets.html"><i class="icon-screen-tablet"></i>Tickets</a></li>                            
+                        </ul>                        
+                    </nav>                    
+                </div>
+                <div class="tab-pane animated fadeIn" id="sub_menu">
+                    <nav class="sidebar-nav">
+                        <ul class="main-menu metismenu">
+                            <li>
+                                <a href="#Blog" class="has-arrow"><i class="icon-globe"></i> <span>Blog</span></a>
+                                <ul>                                    
+                                    <li><a href="blog-dashboard.html">Dashboard</a></li>
+                                    <li><a href="blog-post.html">New Post</a></li>
+                                    <li><a href="blog-list.html">Blog List</a></li>
+                                    <li><a href="blog-details.html">Blog Detail</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#FileManager" class="has-arrow"><i class="icon-folder"></i> <span>File Manager</span></a>
+                                <ul>                                    
+                                    <li><a href="file-dashboard.html">Dashboard</a></li>
+                                    <li><a href="file-documents.html">Documents</a></li>
+                                    <li><a href="file-media.html">Media</a></li>
+                                    <li><a href="file-images.html">Images</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#Widgets" class="has-arrow"><i class="icon-puzzle"></i><span>Widgets</span></a>
+                                <ul>
+                                    <li><a href="widgets-statistics.html">Statistics Widgets</a></li>
+                                    <li><a href="widgets-data.html">Data Widgets</a></li>
+                                    <li><a href="widgets-chart.html">Chart Widgets</a></li>
+                                    <li><a href="widgets-weather.html">Weather Widgets</a></li>
+                                    <li><a href="widgets-social.html">Social Widgets</a></li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="tab-pane animated fadeIn" id="setting">
+                    <div class="p-l-15 p-r-15">
+                        <h6>Choose Skin</h6>
+                        <ul class="choose-skin list-unstyled">
+                            <li data-theme="purple">
+                                <div class="purple"></div>
+                                <span>Purple</span>
+                            </li>                   
+                            <li data-theme="blue">
+                                <div class="blue"></div>
+                                <span>Blue</span>
+                            </li>
+                            <li data-theme="cyan">
+                                <div class="cyan"></div>
+                                <span>Cyan</span>
+                            </li>
+                            <li data-theme="green">
+                                <div class="green"></div>
+                                <span>Green</span>
+                            </li>
+                            <li data-theme="orange" class="active">
+                                <div class="orange"></div>
+                                <span>Orange</span>
+                            </li>
+                            <li data-theme="blush">
+                                <div class="blush"></div>
+                                <span>Blush</span>
+                            </li>
+                        </ul>
+                        <hr>
+                        <h6>General Settings</h6>
+                        <ul class="setting-list list-unstyled">
+                            <li>
+                                <label class="fancy-checkbox">
+                                    <input type="checkbox" name="checkbox">
+                                    <span>Report Panel Usag</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="fancy-checkbox">
+                                    <input type="checkbox" name="checkbox">
+                                    <span>Email Redirect</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="fancy-checkbox">
+                                    <input type="checkbox" name="checkbox" checked>
+                                    <span>Notifications</span>
+                                </label>                      
+                            </li>
+                            <li>
+                                <label class="fancy-checkbox">
+                                    <input type="checkbox" name="checkbox" checked>
+                                    <span>Auto Updates</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="fancy-checkbox">
+                                    <input type="checkbox" name="checkbox">
+                                    <span>Offline</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="fancy-checkbox">
+                                    <input type="checkbox" name="checkbox" checked>
+                                    <span>Location Permission</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>             
+            </div>          
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-12">
+                        <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Dashboard</h2>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+    
+</div>
+
+<!-- Javascript -->
+<script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script>
+<script src="{% static 'assets/bundles/vendorscripts.bundle.js' %}"></script>
+
+<script src="{% static 'assets/vendor/toastr/toastr.js' %}"></script>
+<script src="{% static 'assets/bundles/chartist.bundle.js' %}"></script>
+<script src="{% static 'assets/bundles/knob.bundle.js' %}"></script> <!-- Jquery Knob-->
+
+<script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script>
+<script src="{% static 'assets/js/index.js' %}"></script>
+
+<script src="{% static 'assets/jquery-validation/jquery.validate.js' %}"></script> <!-- Jquery Validation Plugin Css -->
+<script src="{% static 'assets/jquery-steps/jquery.steps.js' %}"></script> <!-- JQuery Steps Plugin Js -->
+
+<script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script>
+<script src="{% static 'assets/js/pages/forms/form-wizard.js' %}"></script>
+<script src="{% static 'assets/select2/select2.min.js' %}"></script>
+</body>
+</html>

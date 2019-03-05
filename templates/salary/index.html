@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+<h3> Loan History</h3>
+
+{% for loan in loans %}
+    Name: {{ loan.employee.first_name }} {{ loan.employee.last_name }}
+
+    {% if loan.loan_status == None %}
+    <p>Status: pending </p>
+    {% endif %}
+    {% if loan.loan_status == True %}
+    <p>Status: Granted </p>
+    {% endif %}
+   {%  if loan.loan_status == False %}
+    <p>Status: Denied </p>
+
+    {% endif %}
+
+    Amount: {{ loan.amount }}<br><br><br>
+{% endfor %}
+
+{% block content %}
+ <div class="table-responsive m-t-20">
+    <table class="table table-filter table-hover m-b-0">
+        <tbody>
+            <th style="color:orange">Employee</th>
+            <th style="color:green">Net Pay</th>
+            <th>Performance <spastyle="color:maroon">Allowance</span></th>
+            <th>Travel <span style="color:maroon">Allowance</span></th>
+            <th>Leave <span style="color:maroon">Allowance</span></th>
+            <th>Medical <span style="color:maroon">Allowance</span></th>
+            <th>Transport <span style="color:maroon">Allowance</span></th>
+            <th style="color: green">Gross Pay</th>
+            <!-- <th>Edit</th> -->
+            <!-- <th>Delete</th> -->
+
+
+            {% for s in salary %}
+            <tr data-status="">
+                <!--<td><div class="media-object"><img src="../assets/images/xs/avatar1.jpg" alt="" width="35px" class="rounded-circle"></div></td>-->
+                <td>{{ s.employee.first_name }} {{ s.employee.last_name }}</td>
+                <td>{{ s.net_pay }} </td>
+                <td>{{ s.performance_allowance }} </td>
+                <td>{{ s.travel_allowance }} </td>
+                <td>{{ s.leave_allowance }} </td>
+                <td>{{ s.medical_allowance }} </td>
+                <td>{{ s.travel_allowance }} </td>
+
+
+                <td><b>{{ s.gross_pay }} </b></td>
+                 <td><a class="btn btn-secondary" href="{% url 'update_salary' s.id %}">Edit</a> </td>
+                <!-- <td><a class="btn btn-danger">Delete</a> </td> -->
+
+
+
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+<h3> Loan History</h3>
+
+{% for loan in loans %}
+    Name: {{ loan.employee.first_name }} {{ loan.employee.last_name }}
+
+    {% if loan.loan_status == None %}
+    <p>Status: pending </p>
+    {% endif %}
+    {% if loan.loan_status == True %}
+    <p>Status: Granted </p>
+    {% endif %}
+   {%  if loan.loan_status == False %}
+    <p>Status: Declined </p>
+
+    {% endif %}
+
+    Amount: {{ loan.amount }}<br><br><br>
+{% endfor %}
+
+{% block content %}
+ <div class="table-responsive m-t-20">
+    <table class="table table-filter table-hover m-b-0">
+        <tbody>
+            <th>Employee</th>
+            <th>Amount</th>
+            <!--<th></th>-->
+            <th>Status</th>
+
+
+            {% for loan in loans %}
+            <tr data-status="">
+                <!--<td><div class="media-object"><img src="../assets/images/xs/avatar1.jpg" alt="" width="35px" class="rounded-circle"></div></td>-->
+                <td>{{ loan.employee.first_name }} {{ loan.employee.last_name }}</td>
+                <td>{{ loan.amount }} </td>
+
+                <!--<td>jacob@gnail.com</td>-->
+                {% if loan.loan_status == None %}
+                <td><span class="badge badge-warning">Pending</span></td>
+                {% endif %}
+                {% if loan.loan_status == True %}
+                 <td><span class="badge badge-success">Approved</span></td>
+
+                {% endif %}
+               {%  if loan.loan_status == False %}
+                <td><span class="badge badge-danger">Declined</span></td>
+
+
+            {% endif %}
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+</body>
+</html>

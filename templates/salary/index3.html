@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for month in months %}
+        {{ month|date:"Y-F" }} > {{ month|date:"Y-F" }}
+    {% endfor %}
+
+{% for month in months %}
+            <li><a href="/date/{{ month|date:"Y-F" }}">{{ month|date:"Y-F" }}</a></li>
+        {% endfor %}
+{% endblock %}

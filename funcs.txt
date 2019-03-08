@@ -1,0 +1,40 @@
+# def salary_view(request):
+#     salaries = Salary.objects.filter().order_by('-date_created')
+#     month_list = []
+#     for salary in salaries:
+#         salary.month = datetime.datetime(salary.date_created.year, salary.date_created.month, 1)
+#         month_list.append(salary.month)
+#     months = set(month_list)
+#     months = list(months)
+#     months.sort(reverse=True)
+#     context =  {'months': months}
+#     return render(request, 'salary/index3.html', context)
+    # return HttpResponse(context)
+# register.inclusion_tag('salary/index3.html')(salary_view)
+
+# def salary_view(request):
+#     all_salary = Salary.objects.filter().order_by('-date_created')
+#     now = datetime.datetime.now()
+#
+#     # create a dict with the years and months:events
+#     salary_dict = {}
+#     for i in range(all_salary[0].date_created.year, all_salary[len(all_salary)-1].date_created.year-1, -1 ):
+#         salary_dict[i] = {}
+#         for month in range(1,13):
+#             salary_dict[i][month] = []
+#     for salary in all_salary:
+#         salary_dict[salary.date_created.year][salary.date_created.month].append(salary)
+#
+#     # this is necessary for the years to be sorted
+#     salary_sorted_keys = list(reversed(sorted(salary_dict.keys())))
+#     salary_list = []
+#     for key in salary_sorted_keys:
+#         adict = {key:salary_dict[key]}
+#         salary_list.append(adict)
+#
+#     t = loader.get_template('salary/index2.html')
+#     c = {
+#         'now': now, 'salary_list': salary_list,
+#     }
+#     return HttpResponse(t.render(c))
+

@@ -34,8 +34,9 @@ def year_month(request, year):
     months = Month.objects.filter(year=year)
     return render(request, 'payroll/year_month.html', {'months': months})
 
-# def payroll_salary(request, month):
-
+def payroll_salary(request, month):
+    p_salary = SalaryPayroll.objects.filter(month=month)
+    return render(request, 'payroll/salary_payroll.html', {'p_salary':p_salary})
 
 
 def login(request):

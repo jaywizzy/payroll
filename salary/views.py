@@ -3,14 +3,35 @@ from .models import Salary
 from .forms import SalaryForm
 from django.db.models.functions import ExtractMonth
 from django.db.models import Count
-
+from django.template import Context, loader
+from django import template
+register = template.Library()
+from django.http import HttpResponse
+import datetime
+from django.views.generic.dates import MonthArchiveView, YearArchiveView
 # Create your views here.
+import xlwt
 
-def salary(request):
+class SalaryYearArchiveView(YearArchiveView):
+    queryset = Salary.objects.all()
+    date_field = 'date_created'
+    make_object_list = True
+    allow_future = True
 
-    salary = Salary.objects.all()
+class SalaryMonthArchiveView(MonthArchiveView):
+    queryset = Salary.objects.all()
+    date_field = 'date_created'
+    allow_future = True
+
+def salary_view(request):
+    all_salary = Salary.objects.all()
+    # query_set = Salary.objects.filter(id=id)
+    context = {
+        'salary': all_salary,
+        # 'query_set': query_set
+    }
     # salary = Salary.objects.annotate(month=ExtractMonth('date_created')).values('month').annotate(count=Count('id')).values('month', 'count')
-    return render(request, 'salary/index.html', {'salary': salary})
+    return render(request, 'salary/index.html', context)
 
 def create_salary(request):
 
@@ -46,3 +67,29 @@ def delete_salary(request, id):
     return render(request, 'salary/index.html', {'salary': salary})
 
 
+def export_salary_xls(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="payroll.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Payroll')
+
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['Fist Name','Last Name', 'Net pay', 'Working Days', 'Gross pay', 'month', 'year']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    font_style = xlwt.XFStyle()
+    rows = Salary.objects.all().values_list('employee__first_name', 'employee__last_name','net_pay', 'total_working_days', 'gross_pay', 'date_created__month', 'date_created__year')
+    for row in rows:
+        row_num += 1
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, row[col_num], font_style)
+
+    wb.save(response)
+    return response

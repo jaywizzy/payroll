@@ -3,9 +3,9 @@
 
 
 {% block content %}
-    {% for s_p in salary_payroll %}
-    <a class="btn btn-lg btn-primary"> {{ s_p }} </a>
-    <!--{{ year.id }}-->
+    {% for s_p in p_salary %}
+    <!--<a class="btn btn-lg btn-primary"> {{ s_p }} </a>-->
+    {{ s_p.salary.email }}
     {% endfor %}
         <p></p>
 {% endblock %}

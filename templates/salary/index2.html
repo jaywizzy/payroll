@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for s in salary_list %}
+    {{ s.values }}
+{% endfor %}
+<!--&nbsp;-->
+    {% for salary_year in salary_list %}
+        <ul class="year">{{ salary_year.keys.0}}
+            {% for month, salaries in salary_year.values.0.items %}
+            <!--show only months with salary-->
+            {% if salaries %}
+                <li id="{{ salary_year.keys.0 }}-{{ month }} " class="month">
+                    <div class="month-data">
+                        <div class="collapsed"> &nbsp;</div>
+                        <div class="expanded" style="display:none;"> &nbsp;</div>
+                        <span class="name"> {{ salaries.0.date|date:"F" }}</span>
+                        <span class="counter"> {{ salaries|length }}</span>
+                    </div>
+                    <ul class="salary" style="display:none;">
+                        {% for salary in salaries %}
+                            <li class="salary">
+                                <a href="" class="employee"> {{ salary.employee }} </a>
+                                <div class="date"> {{ salary.date|date:"j M Y" }} </div>
+                                <div class="net-pay"> {{ salary.net_pay }}</div>
+                            </li>
+                        {% endfor %} <!--endfor loop of salary in salaries-->
+
+                    </ul>
+                </li>
+            {% endif %} <!--endif salaries-->
+
+            {% endfor %} <!--endfor month loop-->
+
+        </ul>
+        {% endfor %}<!--end first for loop-->
+
+
+{% endblock %}

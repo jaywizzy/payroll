@@ -1,11 +1,8 @@
 from django.db import models
-# from employees.models import Employee
 from core.models import User
-# from django.http import redirect
 from django.contrib import messages
 from salary.models import Salary
-# from loan import Loan
-# Create your models here.
+from django.urls import reverse
 
 
 
@@ -39,10 +36,10 @@ class Month(models.Model):
 class SalaryPayroll(models.Model):
     salary = models.ForeignKey(Salary, on_delete=models.CASCADE, related_name='salary_payrolls')
     month = models.ForeignKey(Month, on_delete=models.CASCADE, related_name='salary_payrolls')
+    year = models.ForeignKey(Year, on_delete=models.CASCADE, related_name='salary_payrolls')
     date_created = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.BooleanField(null=True)
-#
-#     def __str__(self):
-#         return '%s %s %s' %(self.employee, self.title, self.type)
 
+    def __str__(self):
+        return '%s %s %s' %(self.salary, self.month, self.year)

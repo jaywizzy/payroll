@@ -8,4 +8,5 @@ class SalaryForm(forms.ModelForm):
     class Meta:
         model = Salary
         fields = '__all__'
+        exclude = ('gross_pay', )
 

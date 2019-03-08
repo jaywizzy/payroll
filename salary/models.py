@@ -25,9 +25,15 @@ class Salary(models.Model):
     class Meta:
         verbose_name_plural = 'salaries'
 
+    # def display_month(self):
+    #     month = self.date_created.strftime()
+
+    def get_absolute_url(self):
+        return reverse('salary-detail', kwargs={'pk': pk})
+
     def save(self, *args, **kwargs):
         # print(self.payroll)
-        self.tax_deduction = self.net_pay / 3
+        # self.tax_deduction = self.net_pay / 3
         print(self.tax_deduction)
         self.allowances = self.travel_allowance + self.net_pay + self.leave_allowance + self.performance_allowance + self.transport_allowance + self.medical_allowance -self.tax_deduction - self.other_deductions
         # self.payroll = self.tax_deduction - self.other_deductions

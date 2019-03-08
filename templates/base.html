@@ -150,8 +150,8 @@
                             <li>
                                 <a href="#" class="has-arrow"><i class="icon-briefcase"></i><span>Salary</span></a>
                                 <ul>
-                                    <li><a href="{% url 'add_salary' %}">Add Salary</a></li>
-                                    <li><a href="{% url 'salary' %}">View Salary History</a></li>
+                                    <li><a href="{% url 'add_salary' %}">Add Payroll</a></li>
+                                    <li><a href="{% url 'salary' %}">View Payroll History</a></li>
                                 </ul>
                             </li>
 
@@ -331,6 +331,7 @@
 
 <script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script>
 <script src="{% static 'assets/js/index.js' %}"></script>
+<script src="{% static 'assets/js/jquery.js' %}"></script>
 
 <script src="{% static 'assets/jquery-validation/jquery.validate.js' %}"></script> <!-- Jquery Validation Plugin Css -->
 <script src="{% static 'assets/jquery-steps/jquery.steps.js' %}"></script> <!-- JQuery Steps Plugin Js -->
@@ -338,5 +339,24 @@
 <script src="{% static 'assets/bundles/mainscripts.bundle.js' %}"></script>
 <script src="{% static 'assets/js/pages/forms/form-wizard.js' %}"></script>
 <script src="{% static 'assets/select2/select2.min.js' %}"></script>
+
+
+<script>
+    //toggle month
+    var toggleMonth = function(month){
+        $(month).children('.salaries').slideToggle('slow');
+        $(month).find('.month-data div.collapsed').toggle();
+        $(month).find('.month-data div.expanded').toggle();
+    }
+
+    //expand the current month
+    toggleMonth($('#{{now.year}}-{{now.month}}'));
+
+    //intercept click to toggle month
+    $('month-data').click(function(){
+        var month = $(this).parent();
+        toggleMonth(month);
+        });
+</script>
 </body>
 </html>

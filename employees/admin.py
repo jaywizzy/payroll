@@ -4,17 +4,9 @@ from .models import *
 
 
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ['user', 'phone_number']
+    list_display = ['first_name', 'last_name']
 admin.site.register(Employee, EmployeeAdmin)
 
 class AccountDetailAdmin(admin.ModelAdmin):
-    list_display = ['employee', 'bank_name', 'account_type']
+    list_display = ['employee', 'bank_name', 'account_number']
 admin.site.register(AccountDetail, AccountDetailAdmin)
-
-class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ['employee' , 'title']
-admin.site.register(Department, DepartmentAdmin)
-
-class DesignationAdmin(admin.ModelAdmin):
-    list_display = ['employee', 'title', 'department']
-admin.site.register(Designation, DesignationAdmin)

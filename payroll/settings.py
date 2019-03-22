@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'employees',
-    'payroll_app',
+    # 'payroll_app',
     'salary',
     'loan',
     'widget_tweaks',
@@ -141,5 +141,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 
 AUTH_USER_MODEL = 'core.User'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'logout'
 

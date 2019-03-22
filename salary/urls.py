@@ -16,7 +16,9 @@ urlpatterns = [
          SalaryYearArchiveView.as_view(),
          name="salary_year_archive"),
     path('add', create_salary, name="add_salary"),
+    path('employee_report/<int:id>/', employee_salary_report, name="employee_report"),
     path('export/xls/', export_salary_xls, name='export_salary_xls'),
+    path('export/employee/xls/<int:id>/', export_employee_salary_xls, name='export_employee_salary_xls'),
     path('edit/<int:id>/', edit_salary, name="update_salary"),
     path('delete/<int:id>', delete_salary, name="delete_salary")
 ]

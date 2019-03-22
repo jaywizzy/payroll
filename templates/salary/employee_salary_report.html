@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
-    <h1>Monthly Payroll VIEW</h1>
-   <h2> {{ month|date:"F" }} </h2>
-     <table class="table table-filter table-hover m-b-0">
+
+	<div class="table-responsive m-t-20">
+
+         <table class="table table-filter table-hover m-b-0">
 
 
         <tbody>
@@ -15,16 +17,16 @@
             <th>Medical <span style="color:maroon">Allowance</span></th>
             <th>Transport <span style="color:maroon">Allowance</span></th>
             <th style="color: green">Gross Pay</th>
-            <th style="color: green">Date Created</th>
+            <!--<th style="color: green">Year</th>-->
             <!--<th style="color: green">Month</th>-->
 
             <!-- <th>Edit</th> -->
             <!-- <th>Delete</th> -->
 
-                      {% for s in object_list %}
+                      {% for s in employee_report %}
             <tr data-status="">
                 <!--<td><div class="media-object"><img src="../assets/images/xs/avatar1.jpg" alt="" width="35px" class="rounded-circle"></div></td>-->
-                <td>{{ s.employee.first_name }} {{ s.employee.last_name }}</td>
+                <td> <a href="{% url 'detail' s.employee.id %}">{{ s.employee.first_name }} {{ s.employee.last_name }} </a></td>
                 <td>{{ s.net_pay }} </td>
                 <td>{{ s.performance_allowance }} </td>
                 <td>{{ s.travel_allowance }} </td>
@@ -34,25 +36,14 @@
 
 
                 <td><b>{{ s.gross_pay }} </b></td>
-               <td> {{ s.date_created|date:"F j, Y" }} </td>
 
-                 <!--<td><a class="btn btn-secondary" href="{% url 'update_salary' s.id %}">Edit</a> </td>-->
-                <!-- <td><a class="btn btn-danger">Delete</a> </td> -->
-
-
-
+            
             </tr>
             {% endfor %}
 
-            <a href="{% url 'export_salary_xls' %}">Export all Payroll as Excel</a>
         </tbody>
     </table>
+</div>
 
-    {% if previous_month %}
-        Previous Month: {{ previous_month|date:"F Y" }}
-    {% endif %}
-    {% if next_month %}
-        Next Month: {{ next_month|date:"F Y" }}
-    {% endif %}
 
 {% endblock %}

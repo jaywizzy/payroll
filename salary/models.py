@@ -1,12 +1,13 @@
 from django.db import models
 # from employees.models import Employee
-from core.models import User
+# from core.models import User
+from employees.models import *
 
 # Create your models here.
 
 
 class Salary(models.Model):
-    employee = models.ForeignKey(User, related_name='salaries', on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, related_name='salaries', on_delete=models.CASCADE)
     net_pay = models.IntegerField()
     total_working_days = models.IntegerField()
     travel_allowance = models.IntegerField(null=True, blank=True, default=0)
@@ -16,8 +17,8 @@ class Salary(models.Model):
     medical_allowance = models.IntegerField(null=True, blank=True, default=0)
     tax_deduction = models.IntegerField(null=True, blank=True, default=0)
     other_deductions = models.IntegerField(null=True, blank=True, default=0)
-    month_pay = models.CharField(max_length=100)
-    year_salary = models.CharField(max_length=100)
+    # month_pay = models.CharField(max_length=100)
+    # year_salary = models.CharField(max_length=100)
     gross_pay = models.IntegerField(null=True, blank=True, default=0)
     date_created = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

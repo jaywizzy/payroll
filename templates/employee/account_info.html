@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	
+		<a href="{% url 'edit_account_info' account_info.id %}"> EDIT ACCOUNT INFO </a>
+	<br>
+
+	<h2>EMPLOYEE ACCOUNT INFO</h2>
+
+	<div class="table-responsive m-t-20">
+
+         <table class="table table-filter table-hover m-b-0">
+
+
+        <tbody>
+            <th style="color:orange">Employee</th>
+            <th> <span style="color:maroon">Bank Name</span></th>
+            <th><span style="color:maroon">Account Type</span></th>
+            <th><span style="color:maroon">Account Number</span></th>
+           
+            <tr data-status="">
+                <!--<td><div class="media-object"><img src="../assets/images/xs/avatar1.jpg" alt="" width="35px" class="rounded-circle"></div></td>-->
+                <td> {{ account_info.employee }}</td>
+                <td> {{ account_info.bank_name }}</td>
+                <td>{{ account_info.account_type }} </td>
+                <td>{{ account_info.account_number }} </td>
+                
+
+                
+
+
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+ <!--<td><a class="btn btn-secondary" href="{% url 'update_salary' s.id %}">Edit</a> </td>-->
+                <!-- <td><a class="btn btn-danger">Delete</a> </td> -->

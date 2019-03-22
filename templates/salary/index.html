@@ -25,7 +25,7 @@
                       {% for s in salary %}
             <tr data-status="">
                 <!--<td><div class="media-object"><img src="../assets/images/xs/avatar1.jpg" alt="" width="35px" class="rounded-circle"></div></td>-->
-                <td>{{ s.employee.first_name }} {{ s.employee.last_name }}</td>
+                <td> <a href="{% url 'detail' s.employee.id %}">{{ s.employee.first_name }} {{ s.employee.last_name }} </a></td>
                 <td>{{ s.net_pay }} </td>
                 <td>{{ s.performance_allowance }} </td>
                 <td>{{ s.travel_allowance }} </td>
@@ -45,7 +45,7 @@
             {% endfor %}
 
 
-            <a href="{% url 'export_salary_xls' %}">Export all Payroll as PDF</a>
+            <a href="{% url 'export_salary_xls' %}">Export all Payroll as Excel</a>
         </tbody>
     </table>
 </div>

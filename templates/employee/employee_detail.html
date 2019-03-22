@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <div class="table-responsive m-t-20">
+
+         <table class="table table-filter table-hover m-b-0">
+
+
+        <tbody>
+            <th style="color:orange">Employee</th>
+            <th> <span style="color:maroon">Department</span></th>
+            <th> <span style="color:maroon">Designation</span></th>
+            <th> <span style="color:maroon">Phone Number</span></th>
+            
+            
+            <tr data-status="">
+                <!--<td><div class="media-object"><img src="../assets/images/xs/avatar1.jpg" alt="" width="35px" class="rounded-circle"></div></td>-->
+                <td>{{ employee.first_name }} {{ employee.last_name }}</td>
+                <td>{{ employee.department }} </td>
+                <td>{{ employee.designation }} </td>
+                <td>{{ employee.phone_number }} </td>
+            
+            </tr>
+            <a href="{% url 'export_employee_salary_xls' employee.id %}"> Download Employee Payroll History</a>
+        </tbody>
+    </table>
+    <a href="{% url 'account_info' employee.id %}"> Account Information</a>
+</div>
+
+{% endblock %}

@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('payroll_app.urls')),
+    # path('', include('payroll_app.urls')),
     path('admin/', admin.site.urls),
     path('loan/', include('loan.urls')),
     path('auth/', include('django.contrib.auth.urls')),
-    path('salary/', include('salary.urls')),
+    path('', include('salary.urls')),
+    path('employee/', include('employees.urls')),
 
 ]

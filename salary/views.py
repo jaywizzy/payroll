@@ -8,6 +8,7 @@ from django import template
 register = template.Library()
 from django.http import HttpResponse
 import datetime
+from django.contrib.auth.decorators import login_required
 from django.views.generic.dates import MonthArchiveView, YearArchiveView
 # Create your views here.
 import xlwt
@@ -31,7 +32,8 @@ def salary_view(request):
         # 'query_set': query_set
     }
     # salary = Salary.objects.annotate(month=ExtractMonth('date_created')).values('month').annotate(count=Count('id')).values('month', 'count')
-    return render(request, 'salary/index.html', context)
+    return render(request, 'payroll/payroll_index.html', context)
+
 
 def create_salary(request):
 
@@ -44,7 +46,13 @@ def create_salary(request):
     else:
         form = SalaryForm()
 
-    return render(request, 'salary/create.html', {'form': form})
+    return render(request, 'payroll/create_payroll.html', {'form': form})
+
+@login_required
+def index(request):
+    user = request.user
+    print('hello', user)
+    return render(request, 'payroll/index.html', {'user': user})
 
 def edit_salary(request, id):
     salary = Salary.objects.get(id=id)
@@ -53,8 +61,8 @@ def edit_salary(request, id):
         form.save()
         return redirect('salary')
     else:
-        form = SalaryForm()
-    return render(request, 'salary/create.html', {'form': form, 'salary': salary})
+        form = SalaryForm(instance = salary)
+    return render(request, 'payroll/create_payroll.html', {'form': form, 'salary': salary})
 
 
 
@@ -126,4 +134,3 @@ def export_salary_xls(request):
 
     wb.save(response)
     return response
-

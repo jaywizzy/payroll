@@ -8,8 +8,8 @@ urlpatterns = [
 	path('edit/<int:id>/', edit, name="edit_employee"),
 	# path('delete/<int:id>/', delete, name="delete"),
 
-	path('account_info/<int:id>/', account_info, name="account_info"),
-	path('edit_account_info/<int:id>/', edit_account_info, name="edit_account_info"),
+	# path('account_info/<int:id>/', account_info, name="account_info"),
+	# path('edit_account_info/<int:id>/', edit_account_info, name="edit_account_info"),
 
 
 ]

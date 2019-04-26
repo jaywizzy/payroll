@@ -1,0 +1,65 @@
+{% extends 'payroll/index.html' %}
+{% load widget_tweaks %}
+        {% block content %}
+            <!-- BREADCRUMB-->
+            <section class="au-breadcrumb2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                                <div class="au-breadcrumb-left">
+                                    <span class="au-breadcrumb-span">You are here:</span>
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                        <li class="list-inline-item active">
+                                            <a href="#">Payroll</a>
+                                        </li>
+                                        <li class="list-inline-item seprate">
+                                            <span>/</span>
+                                        </li>
+                                        <li class="list-inline-item">Create Payroll</li>
+                                    </ul>
+                                </div>
+                                <form class="au-form-icon--sm" action="" method="post">
+                                    <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
+                                    <button class="au-btn--submit2" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END BREADCRUMB-->
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                       Create Payroll
+
+                    </div>
+                    <div class="card-body card-block">
+                        <form method="post" class="form-horizontal">{% csrf_token %}
+                            <div class="row form-group">
+                              {% for field in form %}
+                                <div class="col col-md-4">
+                                    <!-- <input type="text" placeholder="Enter ....." class="form-control"> -->
+                                    <label><b> {{ field.label }}</b></label>
+                                    {% render_field field class="form-control" %}
+                                </div>
+                              {% endfor %}
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> Submit
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-sm">
+                            <i class="fa fa-ban"></i> Reset
+                        </button>
+                    </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+          {% endblock %}

@@ -91,25 +91,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      {% for s in employees %}
+                                      {% for employee in employees %}
                                         <tr class="tr-shadow">
                                             <td>
-                                              <a href="{% url 'employee_detail' s.id %}">{{ s.first_name }} {{ s.last_name }} </a></td>
+                                              <a href="{% url 'employee_detail' employee.id %}">{{ employee.first_name }} {{ s.last_name }} </a></td>
                                             </td>
                                             <td>
-                                              {{ s.department }}
+                                              {{ employee.department }}
                                             </td>
-                                            <td>{{ s.designation }}</td>
-                                            <td>{{ s.phone_number }}</td>
+                                            <td>{{ employee.designation }}</td>
+                                            <td>{{ employee.phone_number }}</td>
 
                                             <td>
                                                 <div class="table-data-feature">
 
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                      <a href="{% url 'edit_employee' employee.id%}">
                                                         <i class="zmdi zmdi-edit"></i>
+                                                      </a>
                                                     </button>
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                      <a href="{% url 'delete_employee' employee.id %}">
                                                         <i class="zmdi zmdi-delete"></i>
+                                                      </a>
                                                     </button>
 
                                                 </div>

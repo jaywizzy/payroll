@@ -89,6 +89,7 @@
                                             <th>Medical Allowance</th>
                                             <th>Transport Allowance</th>
                                             <th>Gross Pay</th>
+                                            <th>Pay Slip</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -114,17 +115,19 @@
                                             <td>{{ s.medical_allowance }}</td>
                                             <td>{{ s.travel_allowance }}</td>
                                             <td>{{ s.gross_pay }}</td>
+                                            <td><a href="{% url 'payslip' s.id %}">payslip</a></td>
                                             <td>
                                                 <div class="table-data-feature">
 
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                       <a href="{% url 'update_salary' s.id %}">
                                                         <i class="zmdi zmdi-edit"></i>
-                                                        </a>
-
+                                                      </a>
                                                     </button>
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                      <a href="{% url 'delete_salary' s.id %}">                                                      
                                                         <i class="zmdi zmdi-delete"></i>
+                                                      </a>
                                                     </button>
 
                                                 </div>

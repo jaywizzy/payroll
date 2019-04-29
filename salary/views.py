@@ -10,6 +10,12 @@ from django.http import HttpResponse
 import datetime
 from django.contrib.auth.decorators import login_required
 from django.views.generic.dates import MonthArchiveView, YearArchiveView
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from weasyprint import HTML
+
+
 # Create your views here.
 import xlwt
 
@@ -66,20 +72,39 @@ def edit_salary(request, id):
 
 
 
-# def delete_salary(request,id):
-
-def delete_salary(request, id):
+def delete_salary(request,id):
     salary = Salary.objects.get(id=id)
-    if request.method == 'POST':
-        salary.delete()
-        return redirect('salary')
-    return render(request, 'salary/index.html', {'salary': salary})
+    salary.delete()
+    return redirect(salary_view)
+
+
+# def delete_salary(request, id):
+#     salary = Salary.objects.get(id=id)
+#     if request.method == 'POST':
+#         salary.delete()
+#         return redirect('salary')
+#     return render(request, 'salary/index.html', {'salary': salary})
 
 
 def employee_salary_report(request, id):
     employee_report = Salary.objects.filter(employee=id)
 
     return render(request, 'salary/employee_salary_report.html', {'employee_report': employee_report})
+
+def payslip(request, id):
+    emp_payslip = Salary.objects.get(id=id)
+    html_string = render_to_string('payroll/payslip.html', {'emp_payslip': emp_payslip})
+
+    html = HTML(string = html_string)
+    html.write_pdf(target='/tmp/payslip.pdf')
+
+    fs = FileSystemStorage('/tmp')
+    with fs.open('payslip.pdf') as pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachement; filename="payslip.pdf"'
+        return response
+
+    return response
 
 def export_employee_salary_xls(request, id):
     response = HttpResponse(content_type='application/ms-excel')

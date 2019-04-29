@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="{% static 'vendor/bootstrap-4.1/bootstrap.min.css' %}" rel="stylesheet" media="all">
+
+  </head>
+  <body>
+    <div class="container-fluid">
+
+      <div class="col-md-6 offset-3"> <h1>IT HORIZONS LIMITED</h1></div>
+      <div class="col-md-6 offset-3"> <h4>9B, Akin Ogunmade Davies Street, Gbagada Phase 2, Lagos.</h4></div>
+      <div class="col-md-6 offset-3"><h4>Tel: +234 8189039359 </h4> </div>
+      <div class="col-md-6 offset-3"><h4>Email: info@ithorizonsng.com, Website: www.ithorizonsng.com </h4> </div>
+      <div class="col-md-12">
+        <div class="col-md-6">
+          <p>Payslip for the month of: {{ emp_payslip.date_created|date:"F"}} {{ emp_payslip.date_created|date:"Y" }}</p>
+          <p>Employee Name:{{ emp_payslip.employee.first_name }} {{ emp_payslip.employee.last_name }}</p>
+        </div>
+        <div class="col-md-6">
+          <p>Designation: {{ emp_payslip.employee.designation }}</p>
+          <p>Net Salary: {{ emp_payslip.net_pay }}</p>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+
+
+        {{ emp_payslip.net_pay }}
+        {{ emp_payslip.gross_pay }}
+      </div>
+    </div>
+  </body>
+</html>

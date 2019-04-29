@@ -7,7 +7,6 @@ from .forms import EmployeeForm #, AccountDetailForm
 
 def index(request):
 	employees = Employee.objects.all()
-
 	return render(request, 'payroll/employees_index.html', {'employees': employees})
 
 def create(request):
@@ -35,8 +34,12 @@ def edit(request, id):
 			return detail(request, id)
 	else:
 		form = EmployeeForm(instance=employee)
-	return render(request, 'employee/create.html', {'form': form, 'employee': employee})
+	return render(request, 'payroll/create_employee.html', {'form': form, 'employee': employee})
 
+def delete_employee(request,id):
+    employee = Employee.objects.get(id=id)
+    employee.delete()
+    return redirect(index)
 
 # def account_info(request, id):
 # 	account_info = get_object_or_404(AccountDetail, id=id)

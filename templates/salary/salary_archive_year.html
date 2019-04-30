@@ -1,55 +1,161 @@
-{% extends 'base.html' %}
-
+{% extends 'payroll/index.html' %}
+        <!-- PAGE CONTENT-->
 {% block content %}
-<h1>All Salaries for {{ year|date:"Y" }}</h1>
+            <!-- BREADCRUMB-->
+            <section class="au-breadcrumb2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                                <div class="au-breadcrumb-left">
+                                    <span class="au-breadcrumb-span">You are here:</span>
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                        <li class="list-inline-item active">
+                                            <a href="#">Payroll</a>
+                                        </li>
+                                        <li class="list-inline-item seprate">
+                                            <span>/</span>
+                                        </li>
+                                        <li class="list-inline-item">Year {{ year|date:"Y" }} Payroll</li>
 
+                                    </ul>
+                                </div>
+                                <form class="au-form-icon--sm" action="" method="post">
+                                    <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports...">
+                                    <button class="au-btn--submit2" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END BREADCRUMB-->
 
-<div>
-    {% for date in date_list %}
-    <h3>{{ date|date:"F" }}</h3>
-    {% endfor %}
-        <table class="table table-filter table-hover m-b-0">
+            <!-- DATA TABLE-->
+            <section class="p-t-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title-5 m-b-35">Year {{ year|date:"Y" }} Payroll</h3>
+                            <!-- {% for date in date_list %}
+                            <h3>{{ date|date:"F" }}</h3>
+                            {% endfor %} -->
+                            <div class="table-data__tool">
+                                <div class="table-data__tool-left">
+                                    <div class="rs-select2--light rs-select2--md">
+                                        <select class="js-select2" name="property">
+                                            <option selected="selected">All Payrolls</option>
+                                            <option value="">Option 1</option>
+                                            <option value="">Option 2</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                    <div class="rs-select2--light rs-select2--sm">
+                                        <select class="js-select2" name="time">
+                                            <option selected="selected">Today</option>
+                                            <option value="">3 Days</option>
+                                            <option value="">1 Week</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                    <button class="au-btn-filter">
+                                        <i class="zmdi zmdi-filter-list"></i>filters</button>
+                                </div>
+                                <div class="table-data__tool-right">
+                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small" href="">
+                                      <a href="{% url 'add_salary' %}" style="color:white">  <i class="zmdi zmdi-plus"></i>add payroll</a></button>
+                                    <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                        <select class="js-select2" name="type">
+                                            <option selected="selected">Export</option>
+                                            <option value="">Option 1</option>
+                                            <option value="">Option 2</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive table-responsive-data2">
+                                <table class="table table-data2">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th>
+                                                <label class="au-checkbox">
+                                                    <input type="checkbox">
+                                                    <span class="au-checkmark"></span>
+                                                </label>
+                                            </th> -->
+                                            <th>Employee</th>
+                                            <th>Net Pay</th>
+                                            <th>Performance Allowance</th>
+                                            <th>Travel Allowance</th>
+                                            <th>Medical Allowance</th>
+                                            <th>Transport Allowance</th>
+                                            <th>Gross Pay</th>
+                                            <th>Pay Slip</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for employee in object_list %}
+                                        <tr class="tr-shadow">
+                                            <!-- <td>
+                                                <label class="au-checkbox">
+                                                    <input type="checkbox">
+                                                    <span class="au-checkmark"></span>
+                                                </label>
+                                            </td> -->
 
+                                            <td>
+                                              <a href="{% url 'employee_detail' employee.employee.id %}">
+                                                {{ employee.employee.first_name }} {{ employee.employee.last_name }}
+                                              </a>
+                                            </td>
+                                            <td> {{ employee.net_pay }} </td>
+                                            <td>{{ employee.performance_allowance }}</td>
+                                            <td>
+                                                <span class="status--process">{{ s.travel_allowance }}</span>
+                                            </td>
+                                            <td>{{ employee.medical_allowance }}</td>
+                                            <td>{{ employee.travel_allowance }}</td>
+                                            <td>{{ employee.gross_pay }}</td>
+                                            <td><a href="{% url 'payslip' employee.id %}">payslip</a></td>
+                                            <td>
+                                                <div class="table-data-feature">
 
-           <tbody>
-               <th style="color:orange">Employee</th>
-               <th style="color:green">Net Pay</th>
-               <th>Performance <span style="color:maroon">Allowance</span></th>
-               <th>Travel <span style="color:maroon">Allowance</span></th>
-               <th>Leave <span style="color:maroon">Allowance</span></th>
-               <th>Medical <span style="color:maroon">Allowance</span></th>
-               <th>Transport <span style="color:maroon">Allowance</span></th>
-               <th style="color: green">Gross Pay</th>
-               <th style="color: green">Date Created</th>
-               <!--<th style="color: green">Month</th>-->
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                      <a href="{% url 'update_salary' employee.id %}">
+                                                        <i class="zmdi zmdi-edit"></i>
+                                                      </a>
+                                                    </button>
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                      <a href="{% url 'delete_salary' employee.id %}">
+                                                        <i class="zmdi zmdi-delete"></i>
+                                                      </a>
+                                                    </button>
 
-               <!-- <th>Edit</th> -->
-               <!-- <th>Delete</th> -->
-
-                         {% for s in object_list %}
-               <tr data-status="">
-                   <!--<td><div class="media-object"><img src="../assets/images/xs/avatar1.jpg" alt="" width="35px" class="rounded-circle"></div></td>-->
-                   <td>{{ s.employee.first_name }} {{ s.employee.last_name }}</td>
-                   <td>{{ s.net_pay }} </td>
-                   <td>{{ s.performance_allowance }} </td>
-                   <td>{{ s.travel_allowance }} </td>
-                   <td>{{ s.leave_allowance }} </td>
-                   <td>{{ s.medical_allowance }} </td>
-                   <td>{{ s.travel_allowance }} </td>
-
-
-                   <td><b>{{ s.gross_pay }} </b></td>
-                  <td> {{ s.date_created|date:"F j, Y" }} </td>
-
-                    <!--<td><a class="btn btn-secondary" href="{% url 'update_salary' s.id %}">Edit</a> </td>-->
-                   <!-- <td><a class="btn btn-danger">Delete</a> </td> -->
-
-
-
-               </tr>
-               {% endfor %}
-
-               <a href="{% url 'export_salary_xls' %}">Export all Payroll as Excel</a>
-           </tbody>
-       </table>
-{% endblock %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-end">
+                                        <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                    </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END DATA TABLE-->
+            {% endblock %}

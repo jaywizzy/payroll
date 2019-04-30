@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>All Salaries for {{ year|date:"Y" }}</h1>
+
+
+<div>
+    {% for date in date_list %}
+    <h3>{{ date|date:"F" }}</h3>
+    {% endfor %}
+        <table class="table table-filter table-hover m-b-0">
+
+
+           <tbody>
+               <th style="color:orange">Employee</th>
+               <th style="color:green">Net Pay</th>
+               <th>Performance <span style="color:maroon">Allowance</span></th>
+               <th>Travel <span style= "color:maroon">Allowance</span></th>
+               <th>Leave <span style="color:maroon">Allowance</span></th>
+               <th>Medical <span style="color:maroon">Allowance</span></th>
+               <th>Transport <span style="color:maroon">Allowance</span></th>
+               <th style="color: green">Gross Pay</th>
+               <th style="color: green">Date Created</th>    
+
+                         {% for s in object_list %}
+               <tr data-status="">
+                   <!--<td><div class="media-object"><img src="../assets/images/xs/avatar1.jpg" alt="" width="35px" class="rounded-circle"></div></td>-->
+                   <td>{{ s.employee.first_name }} {{ s.employee.last_name }}</td>
+                   <td>{{ s.net_pay }} </td>
+                   <td>{{ s.performance_allowance }} </td>
+                   <td>{{ s.travel_allowance }} </td>
+                   <td>{{ s.leave_allowance }} </td>
+                   <td>{{ s.medical_allowance }} </td>
+                   <td>{{ s.travel_allowance }} </td>
+
+
+                   <td><b>{{ s.gross_pay }} </b></td>
+                  <td> {{ s.date_created|date:"F j, Y" }} </td>
+
+                    <!--<td><a class="btn btn-secondary" href="{% url 'update_salary' s.id %}">Edit</a> </td>-->
+                   <!-- <td><a class="btn btn-danger">Delete</a> </td> -->
+
+
+
+               </tr>
+               {% endfor %}
+
+               <a href="{% url 'export_salary_xls' %}">Export all Payroll as Excel</a>
+           </tbody>
+       </table>
+{% endblock %}

@@ -4,9 +4,15 @@ from django.db.models.signals import post_save
 
 class Employee(models.Model):
     # user = models.ForeignKey(User, related_name='employees', on_delete=models.CASCADE)
+    deps = (
+    ('Applications', 'Applications'), ('Network & Security','Network & Security'),
+    ('Solutions', 'Solutions'),('Human Resource', 'Human Resource'),
+     ('Sales', 'Sales'), ('Finance', 'Finance'), ('Infrastructure', 'Infrastructure'),
+    ('Projects', 'Projects'), ('Research & Development', 'Research & Development')
+    )
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    department = models.CharField(max_length=100)
+    department = models.CharField(max_length=100, choices=deps)
     designation = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=100)
     bank_name = models.CharField(max_length=100, null=True)

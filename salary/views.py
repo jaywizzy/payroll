@@ -14,6 +14,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint import HTML
+from employees.models import Employee
 
 
 # Create your views here.
@@ -30,6 +31,7 @@ class SalaryMonthArchiveView(MonthArchiveView):
     date_field = 'date_created'
     allow_future = True
 
+@login_required
 def salary_view(request):
     all_salary = Salary.objects.all()
     # query_set = Salary.objects.filter(id=id)
@@ -40,7 +42,7 @@ def salary_view(request):
     # salary = Salary.objects.annotate(month=ExtractMonth('date_created')).values('month').annotate(count=Count('id')).values('month', 'count')
     return render(request, 'payroll/payroll_index.html', context)
 
-
+@login_required
 def create_salary(request):
 
     if request.method == 'POST':
@@ -56,10 +58,29 @@ def create_salary(request):
 
 @login_required
 def index(request):
-    user = request.user
-    print('hello', user)
-    return render(request, 'payroll/index.html', {'user': user})
+    emp = Employee.objects.all()
+    sal = Salary.objects.all()
+    # dep_list = []
+    for i in emp:
+        i.deps
+    a = int()
+    for b in sal:
+        a = b.gross_pay
+        a += a
+        # dep_list.append(i.department)
+    # departments = set(dep_list)
+    departments = len(i.deps)
+    employees = len(emp)
+    payroll = len(sal)
+    context = {
+        'departments': departments,
+        'employees': employees,
+        'payroll': payroll,
+        'expense': a
+    }
+    return render(request, 'payroll/index.html', context)
 
+@login_required
 def edit_salary(request, id):
     salary = Salary.objects.get(id=id)
     form = SalaryForm(request.POST or None, instance = salary)
@@ -71,7 +92,7 @@ def edit_salary(request, id):
     return render(request, 'payroll/create_payroll.html', {'form': form, 'salary': salary})
 
 
-
+@login_required
 def delete_salary(request,id):
     salary = Salary.objects.get(id=id)
     salary.delete()

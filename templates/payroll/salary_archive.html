@@ -16,7 +16,7 @@
                                         <li class="list-inline-item seprate">
                                             <span>/</span>
                                         </li>
-                                        <li class="list-inline-item">Monthly Payroll View</li>
+                                        <li class="list-inline-item">View Payroll</li>
                                     </ul>
                                 </div>
                                 <form class="au-form-icon--sm" action="" method="post">
@@ -37,8 +37,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="title-5 m-b-35">Monthly Payroll View | {{ month|date:"F" }}</h3>
-                            <h4>  </h4>
+                            <h3 class="title-5 m-b-35">View Payroll</h3>
                             <div class="table-data__tool">
                                 <div class="table-data__tool-left">
                                     <div class="rs-select2--light rs-select2--md">
@@ -94,7 +93,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      {% for employee in object_list %}
+                                      {% for s in salary %}
                                         <tr class="tr-shadow">
                                             <!-- <td>
                                                 <label class="au-checkbox">
@@ -104,29 +103,29 @@
                                             </td> -->
 
                                             <td>
-                                              <a href="{% url 'employee_detail' employee.employee.id %}">
-                                                {{ employee.employee.first_name }} {{ employee.employee.last_name }}
+                                              <a href="{% url 'employee_detail' s.employee.id %}">
+                                                {{ s.employee.first_name }} {{ s.employee.last_name }}
                                               </a>
                                             </td>
-                                            <td> {{ employee.net_pay }} </td>
-                                            <td>{{ employee.performance_allowance }}</td>
+                                            <td> {{ s.net_pay }} </td>
+                                            <td>{{ s.performance_allowance }}</td>
                                             <td>
                                                 <span class="status--process">{{ s.travel_allowance }}</span>
                                             </td>
-                                            <td>{{ employee.medical_allowance }}</td>
-                                            <td>{{ employee.travel_allowance }}</td>
-                                            <td>{{ employee.gross_pay }}</td>
-                                            <td><a href="{% url 'payslip' employee.id %}">payslip</a></td>
+                                            <td>{{ s.medical_allowance }}</td>
+                                            <td>{{ s.travel_allowance }}</td>
+                                            <td>{{ s.gross_pay }}</td>
+                                            <td><a href="{% url 'payslip' s.id %}">payslip</a></td>
                                             <td>
                                                 <div class="table-data-feature">
 
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                      <a href="{% url 'update_salary' employee.id %}">
+                                                      <a href="{% url 'update_salary' s.id %}">
                                                         <i class="zmdi zmdi-edit"></i>
                                                       </a>
                                                     </button>
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                      <a href="{% url 'delete_salary' employee.id %}">
+                                                      <a href="{% url 'delete_salary' s.id %}">                                                      
                                                         <i class="zmdi zmdi-delete"></i>
                                                       </a>
                                                     </button>
@@ -140,14 +139,12 @@
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination justify-content-end">
                                         <li class="page-item disabled">
-                                          {% if previous_month %}
-                                            <a class="page-link" href="{{ previous_month|date:'F Y' }}" tabindex="-1">Previous</a>
-                                          {% endif %}
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
                                         </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item">
-                                          {% if next_month %}
-                                            <a class="page-link" href="{{ next_month|date:"F Y" }}">Next</a>
-                                          {% endif %}
+                                        <a class="page-link" href="#">Next</a>
                                         </li>
                                     </ul>
                                     </nav>

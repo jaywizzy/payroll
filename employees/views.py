@@ -2,13 +2,16 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Employee #, AccountDetail
 from .forms import EmployeeForm #, AccountDetailForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def index(request):
 	employees = Employee.objects.all()
 	return render(request, 'payroll/employees_index.html', {'employees': employees})
 
+@login_required
 def create(request):
 	if request.method == 'POST':
 		form = EmployeeForm(request.POST)
@@ -20,10 +23,12 @@ def create(request):
 	return render(request, 'payroll/create_employee.html', {'form': form})
 
 
+@login_required
 def detail(request, id):
 	employee = Employee.objects.get(id=id)
 	return render(request, 'payroll/employee_index.html', {'employee': employee})
 
+@login_required
 def edit(request, id):
 	employee = Employee.objects.get(id=id)
 	if request.method == 'POST':
@@ -36,6 +41,7 @@ def edit(request, id):
 		form = EmployeeForm(instance=employee)
 	return render(request, 'payroll/create_employee.html', {'form': form, 'employee': employee})
 
+@login_required
 def delete_employee(request,id):
     employee = Employee.objects.get(id=id)
     employee.delete()
